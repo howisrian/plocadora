@@ -11,8 +11,8 @@ import lombok.Data;
 public class VeiculoPostRequestBody {
 
 	@NotEmpty(message = "Veiculo não pode estar faltando.")
-	private String modelo;
 	private String marca;
+	private String modelo;
     private String placa;
 	private int ano;
 	private int lugares;

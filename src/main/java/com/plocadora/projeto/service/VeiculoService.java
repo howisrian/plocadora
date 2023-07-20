@@ -1,5 +1,4 @@
 package com.plocadora.projeto.service;
-
 import org.springframework.web.server.ResponseStatusException;
 import com.plocadora.projeto.classe.Veiculo;
 import com.plocadora.projeto.repository.VeiculoRepository;
@@ -26,25 +25,26 @@ public class VeiculoService {
     	return VeiculoRepository.findAll();
     }
     
-    public List<Veiculo> findByModelo(String modelo) {
-    	return VeiculoRepository.findByModelo(modelo);
+    public List<Veiculo> findByMarca(String marca) {
+    	return VeiculoRepository.findByMarca(marca);
     }
     
     public Veiculo findByIdOrThrowBadRequestException(long id) {
         return VeiculoRepository.findById(id)
-        		.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Veiculo Não encontrado"));
+        		.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Camisa Não encontrada"));
  	    }
     
     @Transactional
     public Veiculo save(VeiculoPostRequestBody VeiculoPostRequestBody) {
     	return VeiculoRepository.save(Veiculo.builder()
-    			.modelo(VeiculoPostRequestBody.getModelo())
     			.marca(VeiculoPostRequestBody.getMarca())
+    			.modelo(VeiculoPostRequestBody.getModelo())
                 .placa(VeiculoPostRequestBody.getPlaca())
                 .ano(VeiculoPostRequestBody.getAno())
                 .lugares(VeiculoPostRequestBody.getLugares())
                 .valor(VeiculoPostRequestBody.getValor())
     			.build());
+    
     }
 
 	public void delete(long id) {
@@ -52,18 +52,19 @@ public class VeiculoService {
 		
 	}
 	
-	public void replace(VeiculoPutRequestBody VeiculoPutRequestBody) {
-        Veiculo savedVeiculo = findByIdOrThrowBadRequestException(VeiculoPutRequestBody.getId());
-        Veiculo Veiculo = Veiculo.builder()
-                .modelo(VeiculoPuttRequestBody.getModelo())
-    			.marca(VeiculoPuttRequestBody.getMarca())
-                .placa(VeiculoPuttRequestBody.getPlaca())
-                .ano(VeiculoPuttRequestBody.getAno())
-                .lugares(VeiculoPuttRequestBody.getLugares())
-                .valor(VeiculoPuttRequestBody.getValor())
-                .build();
+	public void replace(VeiculoPutRequestBody veiculoPutRequestBody) {
+        Veiculo savedVeiculo = findByIdOrThrowBadRequestException(veiculoPutRequestBody.getId());
+        Veiculo veiculo = Veiculo.builder()
+                .id(savedVeiculo.getId())
+                .marca(veiculoPutRequestBody.getMarca())
+    			.modelo(veiculoPutRequestBody.getModelo())
+                .placa(veiculoPutRequestBody.getPlaca())
+                .ano(veiculoPutRequestBody.getAno())
+                .lugares(veiculoPutRequestBody.getLugares())
+                .valor(veiculoPutRequestBody.getValor())
+    			.build();
 
-        VeiculoRepository.save(Veiculo);
+        VeiculoRepository.save(veiculo);
     }
 	     
 	    

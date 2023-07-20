@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.plocadora.projeto.classe.Veiculo;
 import com.plocadora.projeto.requests.VeiculoPostRequestBody;
 import com.plocadora.projeto.requests.VeiculoPutRequestBody;
@@ -50,13 +49,13 @@ public class VeiculoController {
     }
     
     @GetMapping(path = "/find")
-    public ResponseEntity<List<Veiculo>> findByModelo(@RequestParam(name="nome") String modelo){
-        return ResponseEntity.ok(veiculoService.findByModelo(modelo));
+    public ResponseEntity<List<Veiculo>> findByMarca(@RequestParam(name="nome") String marca){
+        return ResponseEntity.ok(veiculoService.findByMarca(marca));
     }
     
     @PostMapping
-    public ResponseEntity<Veiculo> save(@RequestBody @Valid VeiculoPostRequestBody veiculoPostRequestBody){
-        return new ResponseEntity<>(veiculoService.save(veiculoPostRequestBody), HttpStatus.CREATED);
+    public ResponseEntity<Veiculo> save(@RequestBody @Valid VeiculoPostRequestBody VeiculoPostRequestBody){
+        return new ResponseEntity<>(veiculoService.save(VeiculoPostRequestBody), HttpStatus.CREATED);
     }
     
     @DeleteMapping(path = "/{id}")
@@ -72,5 +71,4 @@ public class VeiculoController {
     }
     
 }
-
 
