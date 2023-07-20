@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>br.com.lojacamisetas</groupId>
+	<groupId>com.plocadora</groupId>
 	<artifactId>projeto-java-loja</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>projeto-java-loja</name>
+	<name>projeto-java-locadora</name>
 	<description>Projeto proposto pela disciplina Linguagem de Programação II utilizando Spring Boot</description>
 
 
